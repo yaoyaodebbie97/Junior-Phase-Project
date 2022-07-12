@@ -25,6 +25,9 @@ import store from "../../app/store";
 import rootReducer from "../../app/redux";
 import { createStore } from "redux";
 
+const app = require("../../server");
+const agent = require("supertest")(app);
+
 const { db, Student } = require("../../server/db");
 
 const seed = require("../../seed");
@@ -67,7 +70,7 @@ describe("Tier One: Students", () => {
 
     // This test is interested in the unconnected AllStudents component. It is
     // exported as a named export in app/components/AllStudents.js
-    xit("renders the students passed in as props", () => {
+    it("renders the students passed in as props", () => {
       const wrapper = mount(
         <MemoryRouter>
           <UnconnectedAllStudents
@@ -80,7 +83,7 @@ describe("Tier One: Students", () => {
       expect(wrapper.text()).to.include("Sally Ride");
     });
 
-    xit("renders DIFFERENT students passed in as props", () => {
+    it("renders DIFFERENT students passed in as props", () => {
       const differentStudents = [
         {
           id: 3,
@@ -107,14 +110,23 @@ describe("Tier One: Students", () => {
       expect(wrapper.text()).to.include("Ada Lovelace");
     });
 
-    xit('*** renders "No Students" if passed an empty array of students', () => {
-      throw new Error("replace this error with your own test");
+    it('*** renders "No Students" if passed an empty array of students', () => {
+      const differentStudents = [];
+      const wrapper = mount(
+        <MemoryRouter>
+          <UnconnectedAllStudents
+            students={differentStudents}
+            getStudents={getStudentsSpy}
+          />
+        </MemoryRouter>
+      );
+      expect(wrapper.text()).to.include("No Students");
     });
 
     // In a later step, we'll create a thunk, and map that thunk to AllStudents
     // as getStudents. For right now, we just need to be sure the component
     // calls it after it mounts.
-    xit("calls this.props.getStudents after mount", async () => {
+    it("calls this.props.getStudents after mount", async () => {
       mount(
         <MemoryRouter>
           <UnconnectedAllStudents
@@ -136,14 +148,14 @@ describe("Tier One: Students", () => {
     });
 
     describe("set/fetch students", () => {
-      xit("setStudents action creator returns a valid action", () => {
+      it("setStudents action creator returns a valid action", () => {
         expect(setStudents(students)).to.deep.equal({
           type: "SET_STUDENTS",
           students
         });
       });
 
-      xit("fetchStudents thunk creator returns a thunk that GETs /api/students", async () => {
+      it("fetchStudents thunk creator returns a thunk that GETs /api/students", async () => {
         await fakeStore.dispatch(fetchStudents());
         const [getRequest] = mockAxios.history.get;
         expect(getRequest).to.not.equal(undefined);
@@ -160,11 +172,12 @@ describe("Tier One: Students", () => {
         testStore = createStore(rootReducer);
       });
 
-      xit("*** returns the initial state by default", () => {
-        throw new Error("replace this error with your own test");
-      });
+      it("*** returns the initial state by default", () => {
+        const initialState = testStore.getState();
+        // console.log(initialState)
+        expect (testStore.getState().campuses).to.be.deep.equal([])      });
 
-      xit("reduces on SET_STUDENTS action", () => {
+      it("reduces on SET_STUDENTS action", () => {
         const action = {
           type: "SET_STUDENTS",
           students
@@ -184,7 +197,7 @@ describe("Tier One: Students", () => {
     // This tests is expecting your component to dispatch a thunk after it mounts
     // Remember that getStudents prop from an earlier test? Now's a good time
     // for a mapDispatch.
-    xit("initializes students from the server when the application loads the /students route", async () => {
+    it("initializes students from the server when the application loads the /students route", async () => {
       const reduxStateBeforeMount = store.getState();
       expect(reduxStateBeforeMount.students).to.deep.equal([]);
       mount(
@@ -202,7 +215,7 @@ describe("Tier One: Students", () => {
 
     // This test is expecting your component to render the students from the
     // Redux store. Now's a good time for a mapState.
-    xit("<AllStudents /> renders students from the Redux store", async () => {
+    it("<AllStudents /> renders students from the Redux store", async () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={["/students"]}>
@@ -232,7 +245,7 @@ describe("Tier One: Students", () => {
     });
 
     // This test expects that you've set up a Route for AllStudents
-    xit("renders <AllStudents /> at /students", () => {
+    it("renders <AllStudents /> at /students", () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={["/students"]}>
@@ -262,8 +275,22 @@ describe("Tier One: Students", () => {
       Student.findAll = studentFindAll;
     });
 
-    xit("*** GET /api/students responds with all students", async () => {
-      throw new Error("replace this error with your own test");
+    it("*** GET /api/students responds with all students", async () => {
+      // throw new Error("replace this error with your own test");
+      const response = await agent.get("/api/students").expect(200);
+      expect(response.body).to.deep.equal([
+        {
+          id: 1,
+          firstName: "Mae",
+          lastName: "Jemison"
+        },
+        {
+          id: 2,
+          firstName: "Sally",
+          lastName: "Ride"
+        }
+      ]);
+      expect(Student.findAll.calledOnce).to.be.equal(true);
     });
   });
 
@@ -271,7 +298,7 @@ describe("Tier One: Students", () => {
     before(() => db.sync({ force: true }));
     afterEach(() => db.sync({ force: true }));
 
-    xit("has fields firstName, lastName, email, imageUrl, gpa", async () => {
+    it("has fields firstName, lastName, email, imageUrl, gpa", async () => {
       const student = await Student.create({
         firstName: "Sally",
         lastName: "Ride",
@@ -286,7 +313,7 @@ describe("Tier One: Students", () => {
       expect(parseFloat(student.gpa)).to.equal(3.8);
     });
 
-    xit("requires firstName, lastName, email", async () => {
+    it("requires firstName, lastName, email", async () => {
       const student = Student.build();
       try {
         await student.validate();
@@ -300,7 +327,7 @@ describe("Tier One: Students", () => {
       }
     });
 
-    xit("firstName, lastName, email cannot be empty", async () => {
+    it("firstName, lastName, email cannot be empty", async () => {
       const student = Student.build({
         firstName: "",
         lastName: "",
@@ -318,11 +345,22 @@ describe("Tier One: Students", () => {
       }
     });
 
-    xit("*** email must be a valid email", async () => {
-      throw new Error("replace this error with your own test");
+    it("*** email must be a valid email", async () => {
+      const student = Student.build ({
+        firstName: "yao",
+        lastName: "guo",
+        email: "yaoyaodebbie",
+        gpa: 3.9
+      });
+      try{
+        await student.validate();
+        throw Error ('validation should have failed with invalid email')
+      } catch (err){
+        expect(err.message).to.contain('Validation isEmail on email failed');
+      }
     });
 
-    xit("gpa must be a float between 0.0 and 4.0", async () => {
+    it("gpa must be a float between 0.0 and 4.0", async () => {
       const student = {
         firstName: "Sally",
         lastName: "Ride",
@@ -346,7 +384,7 @@ describe("Tier One: Students", () => {
       }
     });
 
-    xit("default imageUrl if left blank", () => {
+    it("default imageUrl if left blank", () => {
       const student = Student.build({
         firstName: "",
         lastName: "",
@@ -359,7 +397,7 @@ describe("Tier One: Students", () => {
   describe("Seed file", () => {
     beforeEach(seed);
 
-    xit("populates the database with at least four students", async () => {
+    it("populates the database with at least four students", async () => {
       const seededStudents = await Student.findAll();
       expect(seededStudents).to.have.lengthOf.at.least(4);
     });

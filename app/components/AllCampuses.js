@@ -1,21 +1,38 @@
 import React from "react";
 import { connect } from "react-redux";
+import {fetchCampuses} from '../redux/campuses'
 
 // Notice that we're exporting the AllCampuses component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very
 // bottom) is connected to Redux. Our tests should cover _both_ cases.
 export class AllCampuses extends React.Component {
+  componentDidMount() { 
+    this.props.getCampuses();
+  }
   render() {
-    return <div />;
+    return (
+      <div>
+        {/* {console.log(this.props.campuses)} */}
+        {this.props.campuses.length > 0 
+          ? this.props.campuses.map (campus => (
+          <div> 
+          <h1> name: {campus.name}</h1> 
+          <img src = {campus.imageUrl}></img>  
+          </div>
+        ))
+        : <h1> No Campuses </h1>
+        }
+      </div>
+    )
   }
 }
 
-const mapState = () => {
-  return {};
-};
+const mapState = (state) => ({
+  campuses: state.campuses
+});
 
-const mapDispatch = () => {
-  return {};
-};
+const mapDispatch = (dispatch) => ({
+  getCampuses: () => dispatch (fetchCampuses())
+});
 
 export default connect(mapState, mapDispatch)(AllCampuses);

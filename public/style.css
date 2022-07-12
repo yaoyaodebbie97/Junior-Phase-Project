@@ -31,3 +31,9 @@ main {
   flex-direction: column;
   justify-content: center;
 }
+
+a {
+  color: cyan;
+  margin: 10px;
+  text-decoration: none;
+}
