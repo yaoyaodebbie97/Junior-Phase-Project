@@ -18,10 +18,8 @@ export class AllCampuses extends React.Component {
         {this.props.campuses.length > 0 
           ? this.props.campuses.map (campus => (
           <Link to = {`/campuses/${campus.id}`} key = {campus.id}>
-            <div> 
             <h1> name: {campus.name}</h1> 
             <img src = {campus.imageUrl}></img>  
-            </div>
           </Link>
         ))
         : <h1> No Campuses </h1>

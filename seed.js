@@ -26,7 +26,7 @@ const seed = async () => {
     })
 
     const campus1 = await Campus.create({
-      name: 'USC', address: 'LA, California', description: "The University of Southern California is a private research university in Los Angeles, California. Founded in 1880 by Robert M. Widney, it is the oldest private research university in California."
+      name: 'USC', address: 'LA, California', description: "The University of Southern California is a private research university in Los Angeles, California.", imageUrl: "https://media.gettyimages.com/photos/student-wears-a-facemask-at-the-university-of-southern-california-in-picture-id1206596174?s=612x612"
     })
 
     const campus2 = await Campus.create({

@@ -13,6 +13,7 @@ export class AllStudents extends React.Component {
     this.props.getStudents();
   }
   render() {
+    // console.log(this.props.students)
     return (
       <div>
         {this.props.students.length > 0 

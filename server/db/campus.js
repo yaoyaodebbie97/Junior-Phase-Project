@@ -11,7 +11,7 @@ module.exports = db.define('Campus', {
     },
     imageUrl: {
         type: Sequelize.STRING,
-        defaultValue: "https://media.gettyimages.com/photos/student-wears-a-facemask-at-the-university-of-southern-california-in-picture-id1206596174?s=612x612"
+        defaultValue: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqSTHcT0W1-VEe3h4pr0gKnRNwnY_tdD2-xQ&usqp=CAU"
     },
     address: {
         type: Sequelize.STRING,
