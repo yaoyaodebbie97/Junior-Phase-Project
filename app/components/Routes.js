@@ -1,12 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-// import AllCampuses from './AllCampuses'
-// import AllStudents  from './AllStudents'
+import AllCampuses from './AllCampuses'
+import AllStudents  from './AllStudents'
 import SingleCampus from './SingleCampus'
 import SingleStudent from './SingleStudent'
-import Campuses from './Campuses' // combine al campuses and campus form into one component 
-import Students from './Students'
 
 const Routes = () => {
   return (
@@ -20,9 +18,9 @@ const Routes = () => {
         </ul>
         </nav>
         <main>
-          <Route exact path = '/campuses'  component= {Campuses}/>
+          <Route exact path = '/campuses'  component= {AllCampuses}/>
           <Route path = '/campuses/:campusId' component= {SingleCampus} />
-          <Route exact path = '/students' component= {Students} />
+          <Route exact path = '/students' component= {AllStudents} />
           <Route path = '/students/:studentId' component= {SingleStudent} />
 
           <Route exact

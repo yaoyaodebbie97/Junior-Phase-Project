@@ -42,4 +42,17 @@ router.post('/', async(req, res, next) =>{
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const campus = await Campus.findOne({
+      where: {
+        id: req.params.id
+      }})
+    await campus.destroy();
+    res.send(campus);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

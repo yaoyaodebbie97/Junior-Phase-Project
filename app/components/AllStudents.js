@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import {fetchStudents} from '../redux/students'
+import {fetchStudents, deleteStudent} from '../redux/students'
 import {Link} from 'react-router-dom'
+import CreateStudent from './CreateStudent'
 
 
 
@@ -16,11 +17,19 @@ export class AllStudents extends React.Component {
     // console.log(this.props.students)
     return (
       <div>
+        <CreateStudent/>
         {this.props.students.length > 0 
         ? this.props.students.map (student =>(
-          <Link to = {`students/${student.id}`} key = {student.id}>
+          <div key = {student.id}> 
+          <Link to = {`students/${student.id}`}>
           <h1> {`${student.firstName} ${student.lastName}`}</h1>
           </Link>
+          <button
+            className='remove'
+            onClick={() => this.props.deleteStudent(student.id)}>
+            X
+            </button>
+          </div> 
         ))
         : <h1>No Students</h1> 
         }
@@ -34,7 +43,8 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  getStudents:() => dispatch(fetchStudents())
+  getStudents:() => dispatch(fetchStudents()),
+  deleteStudent: (id) => dispatch(deleteStudent(id))
 });
 
 export default connect(mapState, mapDispatch)(AllStudents);

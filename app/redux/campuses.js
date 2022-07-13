@@ -2,9 +2,10 @@ import axios from 'axios'
 // action types 
 const SET_CAMPUSES = 'SET_CAMPUSES'
 const CREATE_CAMPUS = 'CREATE_CAMPUS'
+const DELETE_CAMPUS = 'DELETE_CAMPUS'
 
 // action creators 
-export const setCampuses = (campuses) => ({
+const setCampuses = (campuses) => ({
   type: SET_CAMPUSES,
   campuses
 });
@@ -14,9 +15,14 @@ const _createCampus = (campus) => {
     campus
   };
 };
+const _deleteCampus = (campus) => {
+  return {
+    type: DELETE_CAMPUS,
+    campus
+  };
+};
 
-
-
+// Thunk creators 
 export const fetchCampuses = () => async (dispatch) =>{
   const {data} = await axios.get('/api/campuses')
   dispatch(setCampuses(data));
@@ -25,6 +31,12 @@ export const createCampus = (campus) => {
   return async (dispatch) => {
     const { data } = await axios.post('/api/campuses', campus);
     dispatch(_createCampus(data));
+  };
+};
+export const deleteCampus = (id) => {
+  return async (dispatch) => {
+    const {data} = await axios.delete(`/api/campuses/${id}`);
+    dispatch(_deleteCampus(data));
   };
 };
 
@@ -38,6 +50,8 @@ const campusesReducer = (state = initialState, action) =>{
       return action.campuses
     case CREATE_CAMPUS: 
       return [...state, action.campus]
+    case DELETE_CAMPUS: 
+      return state.filter((campus) => campus.id !== action.campus.id)
     default:
       return state
   }
