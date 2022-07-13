@@ -22,7 +22,7 @@ router.get('/:id', async(req,res,next) =>{
       include: [{model: Student}]
     })
     if (!campus){
-      res.status(404).send('invalud id')
+      res.status(404).send('invalid id')
     } else {
       res.send(campus)
     }
@@ -31,7 +31,6 @@ router.get('/:id', async(req,res,next) =>{
     next (err);
   }
 })
-
 
 router.post('/', async(req, res, next) =>{
   try{
@@ -54,5 +53,26 @@ router.delete('/:id', async (req, res, next) => {
     next(error);
   }
 });
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const campus = await Campus.findByPk(req.params.id);
+    res.send(await campus.update(req.body));
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/:id/:studentId', async (req, res, next) => {
+  try {
+    const campus = await Campus.findByPk(req.params.id);
+    const student = await Student.findByPk(req.params.studentId)
+    campus.removeStudent(student)
+    res.send(campus);
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;

@@ -45,6 +45,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   getStudents:() => dispatch(fetchStudents()),
   deleteStudent: (id) => dispatch(deleteStudent(id))
-});
+})
+
 
 export default connect(mapState, mapDispatch)(AllStudents);

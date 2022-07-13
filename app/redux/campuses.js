@@ -22,6 +22,7 @@ const _deleteCampus = (campus) => {
   };
 };
 
+
 // Thunk creators 
 export const fetchCampuses = () => async (dispatch) =>{
   const {data} = await axios.get('/api/campuses')
@@ -39,6 +40,7 @@ export const deleteCampus = (id) => {
     dispatch(_deleteCampus(data));
   };
 };
+
 
 // Take a look at app/redux/index.js to see where this reducer is
 // added to the Redux store with combineReducers

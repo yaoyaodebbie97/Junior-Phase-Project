@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import {fetchSingleStudent} from '../redux/singleStudent'
 import {Link} from 'react-router-dom'
+import UpdateStudent from './UpdateStudent'
 
 class SingleStudent extends Component {
     componentDidMount() { 
@@ -12,6 +13,7 @@ class SingleStudent extends Component {
         const campus = student.Campus || {}
         return (
         <div>
+            <UpdateStudent student = {student}/>
             <p> name: {student.firstName + ' ' + student.lastName} </p>
             <img src = {student.imageUrl} ></img>  
             <p> email: {student.email}</p>

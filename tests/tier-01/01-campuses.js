@@ -272,7 +272,6 @@ describe("Tier One: Campuses", () => {
     });
 
     xit('*** navbar has links to "/campuses" and "/" (homepage)', () => {
-      // functionality works!
     });
   });
 
