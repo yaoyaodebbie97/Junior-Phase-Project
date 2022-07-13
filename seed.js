@@ -26,21 +26,21 @@ const seed = async () => {
     })
 
     const campus1 = await Campus.create({
-      name: 'USC', address: 'LA, California', description: "a great private colledge"
+      name: 'USC', address: 'LA, California', description: "The University of Southern California is a private research university in Los Angeles, California. Founded in 1880 by Robert M. Widney, it is the oldest private research university in California."
     })
 
     const campus2 = await Campus.create({
-      name: 'UCLA', address: 'LA downtown, California', description: "a great public colledge", imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQExu2AIU1MlRQTG_uqLIP_bmGqthaRujRjUw&usqp=CAU'
+      name: 'UCLA', address: 'LA downtown, California', description: "The University of California, Los Angeles is a public land-grant research university in Los Angeles, California", imageUrl: 'https://media.istockphoto.com/photos/royce-hall-at-ucla-picture-id517776847'
     })
 
     const campus3 = await Campus.create({
-      name: 'NYU', address: 'New York', description: "a great university", imageUrl: 'https://2mp9xesgrd93v9b8q3vwavu1-wpengine.netdna-ssl.com/wp-content/uploads/2021/07/46bc2094006031.5e737d37ce3c7.jpg'
+      name: 'NYU', address: 'New York', description: "New York University is a private research university in New York City.", imageUrl: 'https://2mp9xesgrd93v9b8q3vwavu1-wpengine.netdna-ssl.com/wp-content/uploads/2021/07/46bc2094006031.5e737d37ce3c7.jpg'
     })
 
     await student1.setCampus(campus1)
     await student2.setCampus(campus1)
     await student3.setCampus(campus2)
-    await student4.setCampus(campus3)
+    await student4.setCampus(campus2)
    
 
   } catch (err) {

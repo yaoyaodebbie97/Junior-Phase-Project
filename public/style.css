@@ -33,7 +33,12 @@ main {
 }
 
 a {
-  color: cyan;
+  color: brown;
   margin: 10px;
   text-decoration: none;
+}
+
+img {
+  max-width: 500px;
+  max-height: 500px;
 }

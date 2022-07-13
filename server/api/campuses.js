@@ -1,4 +1,5 @@
-const {Campus} = require ('../db')
+
+const {Campus, Student} = require ('../db')
 const router = require('express').Router();
 
 router.get('/', async (req, res, next) => {
@@ -12,4 +13,22 @@ router.get('/', async (req, res, next) => {
 });
 
 
+router.get('/:id', async(req,res,next) =>{
+  try{
+    const campus = await Campus.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [{model: Student}]
+    })
+    if (!campus){
+      res.status(404).send('invalud id')
+    } else {
+      res.send(campus)
+    }
+  } 
+  catch (err) {
+    next (err);
+  }
+})
 module.exports = router;
