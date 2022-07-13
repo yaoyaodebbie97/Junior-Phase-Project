@@ -79,6 +79,7 @@ describe("Tier One: Campuses", () => {
           />
         </MemoryRouter>
       );
+      console.log(wrapper.text())
       expect(wrapper.text()).to.include("Mars Academy");
       expect(wrapper.text()).to.include("Jupiter Jumpstart");
       // The test is expecting an image for each campus, with src set to the

@@ -5,6 +5,7 @@ import AllCampuses from './AllCampuses'
 import AllStudents  from './AllStudents'
 import SingleCampus from './SingleCampus'
 import SingleStudent from './SingleStudent'
+// import NotFound from './NotFound'
 
 const Routes = () => {
   return (
@@ -18,21 +19,21 @@ const Routes = () => {
         </ul>
         </nav>
         <main>
-          <Route exact path = '/campuses'  component= {AllCampuses}/>
-          <Route path = '/campuses/:campusId' component= {SingleCampus} />
-          <Route exact path = '/students' component= {AllStudents} />
-          <Route path = '/students/:studentId' component= {SingleStudent} />
-
-          <Route exact
-            path='/'
-            render={() => {
-              return (
-                <div className='home'>
-                  <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
-                </div>
-              )
-            }}
-          />
+            <Route exact path = '/campuses'  component= {AllCampuses}/>
+            <Route path = '/campuses/:campusId' component= {SingleCampus} />
+            <Route exact path = '/students' component= {AllStudents} />
+            <Route path = '/students/:studentId' component= {SingleStudent} />
+            <Route exact
+                path='/'
+                render={() => {
+                  return (
+                    <div className='home'>
+                      <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
+                    </div>
+                  )
+                }}
+              />
+            {/* <Route path = '*' component = {NotFound}/> */}
         </main>
       </div>
     </Router>
