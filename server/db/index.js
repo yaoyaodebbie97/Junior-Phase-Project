@@ -10,7 +10,8 @@ const Campus = require('./campus')
 // Example:
 // Puppy.belongsTo(Owner)
 Student.belongsTo(Campus)
-Campus.hasMany(Student) // default is CampusId (capitalized)
+Campus.hasMany(Student) 
+// default is CampusId (capitalized)
 // Campus.hasMany(Student,{foreignKey: 'campusId'})
 
 

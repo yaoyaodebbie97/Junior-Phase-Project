@@ -41,6 +41,8 @@ const seed = async () => {
     await student2.setCampus(campus1)
     await student3.setCampus(campus2)
     await student4.setCampus(campus2)
+    // student 5 doesn't belong to any campus 
+    // campus 3 has no student 
    
 
   } catch (err) {

@@ -11,24 +11,31 @@ class SingleCampus extends Component {
         this.props.getSingleCampus(this.props.match.params.campusId);
     }
 
+    handleClick () {
+      window.location.reload()
+    }
+
     render() {
         const campus = this.props.campus
         const students = campus.Students || []
         return (
         <div>
             <UpdateCampus campus = {campus}/>
-            <p> name: {campus.name} </p>
+            <p> NAME: {campus.name} </p>
             <img src = {campus.imageUrl} ></img>  
-            <p> address: {campus.address}</p>
-            <p> description: {campus.description} </p>
-            <ul> students: {students.length > 0
+            <p> ADDRESS: {campus.address}</p>
+            <p> DESCRIPTION: {campus.description} </p>
+            <ul> ALL STUDENTS: {students.length > 0
                 ? campus.Students.map (student => 
                   <div key = {student.id}>
                   <Link to = {`/students/${student.id}`}>
                    <li> {student.firstName + ' '+ student.lastName}</li>
                   </Link>
                   <button
-                  onClick={() => this.props.removeStudent(campus,student)}>
+                  onClick={() => {
+                    this.props.removeStudent(campus,student);
+                    window.location.reload();
+                    }}>
                   Unregister
                   </button>
                   </div> )

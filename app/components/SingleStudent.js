@@ -14,11 +14,11 @@ class SingleStudent extends Component {
         return (
         <div>
             <UpdateStudent student = {student}/>
-            <p> name: {student.firstName + ' ' + student.lastName} </p>
+            <p> NAME: {student.firstName + ' ' + student.lastName} </p>
             <img src = {student.imageUrl} ></img>  
-            <p> email: {student.email}</p>
-            <p> gpa: {student.gpa} </p>
-            <p> campus: {Object.keys(campus).length > 0
+            <p> EMAIL: {student.email}</p>
+            <p> GPA: {student.gpa} </p>
+            <p> CAMPUS: {Object.keys(campus).length > 0
                 ?  <Link to = {`/campuses/${campus.id}`}> { campus.name}</Link>
                 : "This student doesn't belong to any campus"
                 }

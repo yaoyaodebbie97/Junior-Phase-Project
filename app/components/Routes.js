@@ -5,7 +5,6 @@ import AllCampuses from './AllCampuses'
 import AllStudents  from './AllStudents'
 import SingleCampus from './SingleCampus'
 import SingleStudent from './SingleStudent'
-// import NotFound from './NotFound'
 
 const Routes = () => {
   return (
@@ -33,7 +32,6 @@ const Routes = () => {
                   )
                 }}
               />
-            {/* <Route path = '*' component = {NotFound}/> */}
         </main>
       </div>
     </Router>
