@@ -14,7 +14,6 @@ class UpdateCampus extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
     componentDidUpdate(prevProps) {
         if (prevProps.campus.id !== this.props.campus.id) {
           this.setState({

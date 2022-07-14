@@ -54,9 +54,16 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
+// when updating, also include Students
 router.put('/:id', async (req, res, next) => {
   try {
-    const campus = await Campus.findByPk(req.params.id);
+    // const campus = await Campus.findByPk(req.params.id);
+    const campus = await Campus.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [{model: Student}]
+    })
     res.send(await campus.update(req.body));
   } catch (error) {
     next(error);
@@ -65,9 +72,9 @@ router.put('/:id', async (req, res, next) => {
 
 router.get('/:id/:studentId', async (req, res, next) => {
   try {
-    const campus = await Campus.findByPk(req.params.id);
-    const student = await Student.findByPk(req.params.studentId)
-    campus.removeStudent(student)
+    const campus = await Campus.findByPk(req.params.id)
+    const student = await Student.findByPk(req.params.studentId);
+    campus.removeStudent(student);
     res.send(campus);
   } catch (error) {
     next(error);

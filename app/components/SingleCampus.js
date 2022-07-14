@@ -15,10 +15,10 @@ class SingleCampus extends Component {
     render() {
         const campus = this.props.campus
         const students = campus.Students || []
-        console.log(campus) // console.log, after update students property is gone!
+        // console.log(campus) campus.Students
         return (
         <div>
-            <UpdateCampus campus = {campus}/>
+            <UpdateCampus campus = {campus} />
             <p> NAME: {campus.name} </p>
             <img src = {campus.imageUrl} ></img>  
             <p> ADDRESS: {campus.address}</p>
@@ -30,7 +30,7 @@ class SingleCampus extends Component {
                    <li> {student.firstName + ' '+ student.lastName}</li>
                   </Link>
                   <button
-                  onClick={() => {
+                   onClick={() => {
                     this.props.removeStudent(campus,student);
                     window.location.reload();
                     }}>
@@ -56,6 +56,3 @@ const mapState = (state) => ({
   });
   
   export default connect(mapState, mapDispatch)(SingleCampus);
-  
-
-  // onClick={() => this.props.deleteCampus(campus.id)}>
