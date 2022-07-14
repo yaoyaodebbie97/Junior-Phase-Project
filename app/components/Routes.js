@@ -1,10 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import AllCampuses from './AllCampuses'
 import AllStudents  from './AllStudents'
 import SingleCampus from './SingleCampus'
 import SingleStudent from './SingleStudent'
+import NotFound from './NotFound';
+
 
 const Routes = () => {
   return (
@@ -18,11 +20,8 @@ const Routes = () => {
         </ul>
         </nav>
         <main>
-            <Route exact path = '/campuses'  component= {AllCampuses}/>
-            <Route path = '/campuses/:campusId' component= {SingleCampus} />
-            <Route exact path = '/students' component= {AllStudents} />
-            <Route path = '/students/:studentId' component= {SingleStudent} />
-            <Route exact
+          <Switch>
+          <Route exact
                 path='/'
                 render={() => {
                   return (
@@ -32,6 +31,12 @@ const Routes = () => {
                   )
                 }}
               />
+            <Route exact path = '/campuses'  component= {AllCampuses}/>
+            <Route exact path = '/campuses/:campusId' component= {SingleCampus} />
+            <Route exact path = '/students' component= {AllStudents} />
+            <Route exact path = '/students/:studentId' component= {SingleStudent} />
+            <Route component={NotFound} />
+          </Switch> 
         </main>
       </div>
     </Router>
@@ -39,3 +44,21 @@ const Routes = () => {
 };
 
 export default Routes;
+
+
+// <main>
+// <Route exact path = '/campuses'  component= {AllCampuses}/>
+// <Route path = '/campuses/:campusId' component= {SingleCampus} />
+// <Route exact path = '/students' component= {AllStudents} />
+// <Route path = '/students/:studentId' component= {SingleStudent} />
+// <Route exact
+//     path='/'
+//     render={() => {
+//       return (
+//         <div className='home'>
+//           <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
+//         </div>
+//       )
+//     }}
+//   />
+// </main>

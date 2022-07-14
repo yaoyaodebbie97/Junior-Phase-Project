@@ -30,13 +30,25 @@ class CreateStudent extends Component {
         const { handleSubmit, handleChange } = this;
         return (
             <form id='student-form' onSubmit={handleSubmit}>
-              <label htmlFor='firstName'>First Name:</label>
+              <label htmlFor='firstName'>First Name:
+              {
+                !firstName && <span className = 'warning'> Field is required</span>
+              }
+              </label>
               <input name='firstName' onChange={handleChange} value={firstName} />
 
-              <label htmlFor='lastName'>Last Name:</label>
+              <label htmlFor='lastName'>Last Name:
+              {
+                !lastName && <span className = 'warning'> Field is required</span>
+              }
+              </label>
               <input name='lastName' onChange={handleChange} value={lastName} />
 
-              <label htmlFor='email'>Email Address:</label>
+              <label htmlFor='email'>Email Address:
+              {
+                !email && <span className = 'warning'> Field is required</span>
+              }
+              </label>
               <input name='email' onChange={handleChange} value={email} />
       
               <button type='submit'>Submit</button>

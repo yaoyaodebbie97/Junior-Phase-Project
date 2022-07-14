@@ -32,7 +32,6 @@ class SingleCampus extends Component {
                   <button
                    onClick={() => {
                     this.props.removeStudent(campus,student);
-                    window.location.reload();
                     }}>
                   Unregister
                   </button>

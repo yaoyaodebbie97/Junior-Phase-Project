@@ -18,7 +18,7 @@ body {
 
 nav {
   align-items: center;
-  background-color: #333333;
+  background-color: grey;
   color: #c0c0c0;
   display: flex;
   height: 80px;
@@ -33,9 +33,11 @@ main {
 }
 
 a {
-  color: brown;
+  color: darkgreen;
   margin: 10px;
   text-decoration: none;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 img {
@@ -51,4 +53,8 @@ button {
   border-radius: 5px;
   margin: 0px 0px 10px 0px;
   cursor: pointer;
+}
+
+span{
+  color: red;
 }

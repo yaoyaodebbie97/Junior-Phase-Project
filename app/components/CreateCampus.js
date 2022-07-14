@@ -29,10 +29,18 @@ class CreateCampus extends Component {
         const { handleSubmit, handleChange } = this;
         return (
             <form id='campus-form' onSubmit={handleSubmit}>
-              <label htmlFor='name'>Campus Name:</label>
+              <label htmlFor='name'>Campus Name:
+              {
+                !name && <span className = 'warning'> Field is required</span>
+              }
+              </label>
               <input name='name' onChange={handleChange} value={name} />
       
-              <label htmlFor='address'>Campus Address:</label>
+              <label htmlFor='address'>Campus Address:
+              {
+                !address && <span className = 'warning'> Field is required </span>
+              }
+              </label>
               <input name='address' onChange={handleChange} value={address} />
       
               <button type='submit'>Submit</button>

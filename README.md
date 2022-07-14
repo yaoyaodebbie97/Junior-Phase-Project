@@ -1,11 +1,12 @@
 1. Yao's Youtube Video Link:
 - https://youtu.be/oY9XsLwqK_Y
 
-
 2.  Yao's extra credit part: 
-- I did the first part - Testing. I wrote test specs for all but one: Navigation: navbar to navigate to home, campuses, students
-
-
+- I did the first part - Testing. I wrote test specs for all but the one about Navigation 
+    * Navigation: navbar to navigate to home, campuses, students
+- I also did two items of the second part - Finishing Touches 
+    * If a user attempts to add a new student or campus without a required field, a helpful message should be displayed
+    * If a user attempts to access a page that doesn't exist (ex. `/potato`), a helpful "not found" message should be displayed
 
 
 # Junior Phase Final Project
