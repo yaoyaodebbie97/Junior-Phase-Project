@@ -24,6 +24,8 @@ const _removeStudent = (campus) =>{
   }
 }
 
+
+
 // thunk creators 
 export const fetchSingleCampus = (id) => async (dispatch) =>{
   const {data} = await axios.get(`/api/campuses/${id}`)
@@ -48,6 +50,7 @@ export const removeStudent = (campus, student) =>{
 // Take a look at app/redux/index.js to see where this reducer is
 // added to the Redux store with combineReducers
 const initialState = {}
+
 
 const singleCampusReducer = (state = initialState, action) =>{
   switch(action.type){

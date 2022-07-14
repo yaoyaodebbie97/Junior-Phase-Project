@@ -7,17 +7,15 @@ import UpdateCampus from './UpdateCampus'
 
 
 class SingleCampus extends Component {
+
     componentDidMount() { 
         this.props.getSingleCampus(this.props.match.params.campusId);
-    }
-
-    handleClick () {
-      window.location.reload()
     }
 
     render() {
         const campus = this.props.campus
         const students = campus.Students || []
+        console.log(campus) // console.log, after update students property is gone!
         return (
         <div>
             <UpdateCampus campus = {campus}/>
@@ -42,6 +40,7 @@ class SingleCampus extends Component {
                 : 'There is no student in this campus'
                 }
             </ul>
+           
         </div>
         )
   }
