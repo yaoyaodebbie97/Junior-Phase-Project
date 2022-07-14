@@ -1,6 +1,8 @@
-Yao's Youtube Video Link:
+1. Yao's Youtube Video Link:
 - https://youtu.be/PIq8R5qEW2o
-Yao's extra credit part: 
+
+
+2.  Yao's extra credit part: 
 - I did the first part - Testing. I wrote test specs for all but one: Navigation: navbar to navigate to home, campuses, students
 
 
